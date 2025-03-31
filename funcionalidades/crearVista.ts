@@ -20,13 +20,16 @@ export default class CrearVista {
     }
 
     public async crearVista() {
-        console.log(styleText(["gray", "bgGreenBright"], `Directorio actual de trabajo: ${this.baseDir}`));
-        this.directorioCreado = path.join(this.baseDir, this._nombreModulo, "views");
+
+        const carpetaModulos = path.join(this.baseDir, "modulos");
+        this.directorioCreado = path.join(carpetaModulos, this._nombreModulo, "views");
 
         try {
 
             await fs.mkdir(this.directorioCreado, { recursive: true });
+            console.log("\n");
             console.log(styleText(["gray", "bgGreenBright"], `Directorio de vistas creado en: ${this.directorioCreado}`));
+            console.log("\n");
             const archivos: string[] = await fs.readdir(path.join(this.baseDir, "vistas_base"));
             await this.crearArchivos(archivos);
 
@@ -36,7 +39,7 @@ export default class CrearVista {
     }
 
     private async crearArchivos(archivos: string[]): Promise<void> {
-        console.log(styleText(["gray", "bgGreenBright"], `Creando archivos en: ${this.directorioCreado}\n`));
+        console.log(styleText(["gray", "bgGreenBright"], `Creando archivos en: ${this.directorioCreado}`));
         for (const archivoBase of archivos) {
             const archivoBasePath = path.join(this.baseDir, "vistas_base", archivoBase);
             try {
@@ -48,8 +51,8 @@ export default class CrearVista {
                 const nuevoArchivoPath = path.join(this.directorioCreado, archivoBase);
 
                 await fs.writeFile(nuevoArchivoPath, contenido);
-                console.log(styleText(["gray", "bgGreenBright"], `Archivo creado: ${nuevoArchivoPath}`));
 
+                console.log(styleText(["gray", "bgGreenBright"], `Archivo creado: ${nuevoArchivoPath}`));
             } catch (error) {
                 console.error(`Error al leer o escribir el archivo ${archivoBase}: ${error}`);
             }
