@@ -24,7 +24,7 @@
     "vistas_base"
   ],
   "bin": {
-    "lynk-create-module": "./index.js"
+    "lynk-create-module": "./salida/index.js"
   },
   "author": "Leonel Toloza",
   "license": "ISC",
