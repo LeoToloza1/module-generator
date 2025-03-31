@@ -1,6 +1,6 @@
 {
   "name": "lynk-module-generator",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "",
   "type": "module",
   "main": "index.js",
@@ -16,6 +16,12 @@
     "module",
     "generator",
     "cli"
+  ],
+  "files": [
+    "salida",
+    "package.json",
+    "archivos_base",
+    "vistas_base"
   ],
   "bin": {
     "lynk-create-module": "./index.js"
