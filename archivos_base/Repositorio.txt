@@ -1,0 +1,32 @@
+export default class Repositorio {
+
+
+    /**
+     *constructor base sin parametros
+     */
+    constructor() {
+    };
+
+    //crud basico
+    public async crearRegistro(): Promise<void> {
+        //ingresar un registro en la db
+    }
+    public async listarTodos(): Promise<void> {
+        //listar todos los registros de la db
+    }
+    public async buscarPorId(id: number): Promise<void> {
+        console.log(id);
+        //buscar un registro por id en la db
+    }
+    public async borradoLogico(id: number): Promise<void> {
+        //borrar un registro de la db
+        console.log(id);
+    }
+
+    public async actualizar(id: string): Promise<void> {
+        //actualizar un registro
+        console.log(id)
+    }
+
+
+}

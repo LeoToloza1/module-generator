@@ -1,0 +1,36 @@
+import { styleText } from "util";
+
+export default class Model {
+    //modificar nombre de las propiedades
+    private propiedad1: string = "";
+    private propiedad2: string = "";
+
+
+    /**
+     *constructor base sin parametros
+     */
+    constructor() {
+    };
+
+    //metodos
+    public getPropiedad1(): string {
+        return this.propiedad1;
+    }
+
+    public getPropiedad2(): string {
+        return this.propiedad2;
+    }
+
+    public setPropiedad1(p: string) {
+        this.propiedad1 = p;
+    }
+    public setPropiedad2(p: string) {
+        this.propiedad2 = p;
+    }
+
+
+    toString() {
+        console.log(styleText(["white", "bgGrey"], `Las propiedades\n propiedad1: ${this.propiedad1}\n propiedad2: ${this.propiedad2}`));
+    }
+
+}
