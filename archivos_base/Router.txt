@@ -1,16 +1,18 @@
 import Controller from "./Controller.js";
 
-export default class Router {
+class {{nombreModulo}}Router {
     //modificar nombre de las propiedades
     private _controller: Controller;
-    private router: any; //cambiar any por Router de express
+    public router: any; //cambiar any por Router de express
 
 
     /**
      *constructor base sin parametros
      */
-    constructor(controller: Controller) {
-        this._controller = controller;
+    constructor() {
+        this._controller = new Controller();
+        //this.router = Router();
+        this.definirRutas();
     };
 
     //ejemplo de router
@@ -20,4 +22,8 @@ export default class Router {
 
     }
 
+
+
 }
+
+export default new {{nombreModulo}}Router().router;

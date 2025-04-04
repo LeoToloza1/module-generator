@@ -55,16 +55,28 @@ export default class CrearModulo {
         }
     }
 
+
+
     private async crearArchivos(archivos: string[], archivosBasePath: string): Promise<void> {
         for (const archivoBase of archivos) {
             const archivoBasePath = path.join(archivosBasePath, archivoBase);
-            const nuevoArchivoNombre = archivoBase.replace(/\.txt$/, ".ts");
-            const nuevoArchivoPath = path.join(this.directorioCreado, nuevoArchivoNombre);
-
             try {
-                const contenido = await fs.readFile(archivoBasePath, "utf-8");
+                let contenido = await fs.readFile(archivoBasePath, "utf-8");
+                // Reemplazar el placeholder {{nombreModulo}} con el nombre del módulo
+                contenido = contenido.replace(/{{nombreModulo}}/g, this._nombreModulo);
+
+                // Verificar si el archivo es el Router y asignar un nombre diferente
+                let nuevoArchivoNombre: string;
+                if (archivoBase.toLowerCase().includes("router")) {
+                    nuevoArchivoNombre = `${this._nombreModulo}Router.ts`; // Nombre especial para el Router
+                } else {
+                    nuevoArchivoNombre = archivoBase.replace(/\.txt$/, ".ts"); // Mantener el nombre original con extensión .ts
+                }
+
+                const nuevoArchivoPath = path.join(this.directorioCreado, nuevoArchivoNombre);
                 await fs.writeFile(nuevoArchivoPath, contenido);
-                console.log(styleText(["black", "bgWhiteBright"], `Archivo creado: ${nuevoArchivoPath}`));
+
+                console.log(styleText(["greenBright"], `Archivo creado: ${nuevoArchivoPath}`));
             } catch (error) {
                 console.error(`Error al leer/escribir el archivo ${archivoBase}: ${error}`);
             }

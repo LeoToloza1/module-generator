@@ -7,8 +7,8 @@ export default class Controller {
     /**
      *constructor base sin parametros
      */
-    constructor(repo: Repositorio) {
-        this._repo = repo;
+    constructor() {
+        this._repo = new Repositorio();
     };
 
     //ejemplo de controller
