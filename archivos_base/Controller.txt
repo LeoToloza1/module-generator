@@ -4,6 +4,7 @@ import Repositorio from "./Repositorio.js"
 export default class Controller {
     //modificar nombre de las propiedades
     private _repo: Repositorio;
+    
     /**
      *constructor base sin parametros
      */
