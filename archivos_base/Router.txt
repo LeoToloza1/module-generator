@@ -1,4 +1,5 @@
 //import { Request, Response, Router } from "express";
+import Controller from "./Controller";
 
 export default class {{nombreModulo}}Router {
     //modificar nombre de las propiedades
@@ -19,6 +20,7 @@ export default class {{nombreModulo}}Router {
     definirRutas(): void {
         //cambiar el tipo any los objetos Request y Response de express
         this.router.get("/", (_req: any, _res: any) => {
+            this._controller.listarTodos();
             _res.render("index");
         });
 

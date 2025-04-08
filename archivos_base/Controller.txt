@@ -1,3 +1,4 @@
+import Repositorio from "./Repositorio";
 
 export default class Controller {
     //modificar nombre de las propiedades

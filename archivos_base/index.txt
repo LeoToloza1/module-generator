@@ -1,5 +1,5 @@
 import Controller from "./Controller.js";
-import UsuarioRouter from "./{{nombreModulo}}Router.js";
+import {{nombreModulo}}Router from "./{{nombreModulo}}Router.js";
 import Model from "./Modelo.js";
 import Repositorio from "./Repositorio.js";
 
@@ -8,7 +8,7 @@ export default class {{nombreModulo}}Modulo{
     private readonly modelo: Model;
     private readonly controlador: Controller;
     private readonly router: {{nombreModulo}}Router;
-    private readonly nombreModulo: string = {{nombreModulo}}
+    private readonly nombreModulo: string = "{{nombreModulo}}"
  
 
     constructor(){
@@ -22,7 +22,7 @@ export default class {{nombreModulo}}Modulo{
     //iniciar
 
     private iniciar(){
-    console.log(`Modulo: ${this.nombreModulo} inicializado `)
+    console.log(`Modulo de: ${this.nombreModulo} inicializado `)
 
     }
 
