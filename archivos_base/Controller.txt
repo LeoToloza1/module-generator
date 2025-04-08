@@ -1,6 +1,4 @@
 
-import Repositorio from "./Repositorio.js"
-
 export default class Controller {
     //modificar nombre de las propiedades
     private _repo: Repositorio;
@@ -8,8 +6,8 @@ export default class Controller {
     /**
      *constructor base sin parametros
      */
-    constructor() {
-        this._repo = new Repositorio();
+    constructor(repo:Repositorio) {
+        this._repo = repo
     };
 
     //ejemplo de controller

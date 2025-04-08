@@ -1,0 +1,31 @@
+import Controller from "./Controller.js";
+import UsuarioRouter from "./{{nombreModulo}}Router.js";
+import Model from "./Modelo.js";
+import Repositorio from "./Repositorio.js";
+
+export default class {{nombreModulo}}Modulo{
+    private readonly repositorio: Repositorio;
+    private readonly modelo: Model;
+    private readonly controlador: Controller;
+    private readonly router: {{nombreModulo}}Router;
+    private readonly nombreModulo: string = {{nombreModulo}}
+ 
+
+    constructor(){
+        this.modelo = new Model();
+        this.repositorio = new Repositorio();
+        this.controlador = new Controller(this.repositorio);
+        this.router = new {{nombreModulo}}Router(this.controlador);
+        this.iniciar();
+    }
+
+    //iniciar
+
+    private iniciar(){
+    console.log(`Modulo: ${this.nombreModulo} inicializado `)
+
+    }
+
+
+
+}
