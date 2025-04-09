@@ -2,6 +2,7 @@ import Controller from "./Controller.js";
 import {{nombreModulo}}Router from "./{{nombreModulo}}Router.js";
 import Model from "./Modelo.js";
 import Repositorio from "./Repositorio.js";
+import EventEmitter from "events";
 
 export default class {{nombreModulo}}Modulo{
     private readonly repositorio: Repositorio;
@@ -11,7 +12,7 @@ export default class {{nombreModulo}}Modulo{
     private readonly nombreModulo: string = "{{nombreModulo}}"
  
 
-    constructor(){
+    constructor(private readonly emisorEventos: EventEmitter){
         this.modelo = new Model();
         this.repositorio = new Repositorio();
         this.controlador = new Controller(this.repositorio);
@@ -20,11 +21,10 @@ export default class {{nombreModulo}}Modulo{
     }
 
     //iniciar
-
-    private iniciar(){
-    console.log(`Modulo de: ${this.nombreModulo} inicializado `)
-
-    }
+    iniciar() {
+        this.emisorEventos.emit("modulo_iniciado",
+            { dato: `${this.nombreModulo} iniciado` });
+        }
 
 
 
