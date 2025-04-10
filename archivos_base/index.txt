@@ -10,6 +10,7 @@ export default class {{nombreModulo}}Modulo{
     private readonly controlador: Controller;
     private readonly router: {{nombreModulo}}Router;
     private readonly nombreModulo: string = "{{nombreModulo}}"
+    private listenerId?: (...args: any[]) => void; // opcional, si vas a escuchar eventos
  
 
     constructor(private readonly emisorEventos: EventEmitter){
@@ -20,12 +21,36 @@ export default class {{nombreModulo}}Modulo{
         this.iniciar();
     }
 
-    //iniciar
+    /**
+     * Inicializa el módulo. Registra un listener para el evento "evento_importante"
+     * y emite un evento "modulo_iniciado" con un objeto que contiene el nombre del
+     * módulo como dato.
+     * @returns {void}
+     */
+
     iniciar() {
-        this.emisorEventos.emit("modulo_iniciado",
-            { dato: `${this.nombreModulo} iniciado` });
+         // Registrar un listener como ejemplo
+        this.listenerId = (datos) => {
+            console.log(`🔔 ${this.nombreModulo} recibió evento`, datos);
+        };
+
+        this.emisorEventos.on("evento_importante", this.listenerId);
+
+        this.emisorEventos.emit("modulo_iniciado", {
+            dato: `${this.nombreModulo} iniciado`,
+        });
         }
 
 
+    /**
+     * Destruye la instancia del módulo y remueve el listener registrado.
+     * @returns {void}
+     */
+    destruir() {
+            if (this.listenerId) {
+                this.emisorEventos.off("alevento_importantego_importante", this.listenerId);
+                console.log(`🧹 Listener de ${this.nombreModulo} removido correctamente.`);
+            }
+        }
 
 }
