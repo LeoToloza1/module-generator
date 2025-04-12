@@ -1,3 +1,4 @@
+import { styleText } from "util";
 import Controller from "./Controller.js";
 import {{nombreModulo}}Router from "./{{nombreModulo}}Router.js";
 import Model from "./Modelo.js";
@@ -5,12 +6,12 @@ import Repositorio from "./Repositorio.js";
 import EventEmitter from "events";
 
 export default class {{nombreModulo}}Modulo{
-    private readonly repositorio: Repositorio;
-    private readonly modelo: Model;
-    private readonly controlador: Controller;
-    private readonly router: {{nombreModulo}}Router;
+    private repositorio: Repositorio | null;
+    private modelo: Model | null;
+    private controlador: Controller | null;
+    private router: {{nombreModulo}}Router | null;
     private readonly nombreModulo: string = "{{nombreModulo}}"
-    private listenerId?: (...args: any[]) => void; // opcional, si vas a escuchar eventos
+  //  private listenerId?: (...args: any[]) => void; // opcional, si vas a escuchar eventos
  
 
     constructor(private readonly emisorEventos: EventEmitter){
@@ -30,15 +31,14 @@ export default class {{nombreModulo}}Modulo{
 
     iniciar() {
          // Registrar un listener como ejemplo
-        this.listenerId = (datos) => {
-            console.log(`🔔 ${this.nombreModulo} recibió evento`, datos);
-        };
+//        this.listenerId = (datos) => {
+//          console.log(`🔔 ${this.nombreModulo} recibió evento`, datos);
+//        };
 
-        this.emisorEventos.on("evento_importante", this.listenerId);
+        //this.emisorEventos.on("evento_importante", this.listenerId);
 
-        this.emisorEventos.emit("modulo_iniciado", {
-            dato: `${this.nombreModulo} iniciado`,
-        });
+        this.emisorEventos.emit("modulo_iniciado",
+            styleText(["white", "bgGreen"], `${this.nombreModulo} iniciado`));
         }
 
 
@@ -46,11 +46,13 @@ export default class {{nombreModulo}}Modulo{
      * Destruye la instancia del módulo y remueve el listener registrado.
      * @returns {void}
      */
-    destruir() {
-            if (this.listenerId) {
-                this.emisorEventos.off("alevento_importantego_importante", this.listenerId);
-                console.log(`🧹 Listener de ${this.nombreModulo} removido correctamente.`);
-            }
-        }
+
+      destruir() {
+        console.log("DESTRUYENDO MODULO: ", this.nombreModulo);
+        this.modelo = null;
+        this.repositorio = null;
+        this.controlador = null;
+        this.router = null;
+    }
 
 }
